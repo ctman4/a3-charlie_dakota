@@ -8,40 +8,19 @@
   </head>
   <body>
     <header>
-      <h1>What's your favorite color?</h1>
+      <h1>Create your poll!</h1>
     </header>
     <form>
-      <button type="add">Add Item</button>
-      <button type="add">Add Item</button>
-      <button type="add">Add Item</button>
-      <button type="add">Add Item</button>
-      <button type="add">Add Item</button>
+      <input type="text" name="left">
+      <button type="add">Poll</button>
     </form>
     <div id="history"></div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
 
-      // Number of times the form has been submitted
-      let counter = 0;
-
-      // Response to submit events
       $('form').on('submit', function(event) {
-        const form = $(this);   // JQuery object representin the form
-        event.preventDefault(); // Don't really submit the form
-
-        // Create a new list
-        const list = $('<ul></ul>');
-        const inputs = form.find('input');
-
-        const li = $(`<div> <li>${inputs.val()}</li> <button> ${'Remove Item'} </button> </div>`);
-        inputs.val('');    // Empty out the box
-
-        $('#history').append(li);
-
-        $('#history').on('click', 'button', function(event) {
-          $(this).closest('div').remove();
-        });
-
+        event.preventDefault();
+        $(this).find('submit').remove();
       });
 
     </script>
