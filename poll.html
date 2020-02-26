@@ -17,6 +17,7 @@
     <form>
       <input type="text" name="left">
       <button type="add">Answers</button>
+      <button type="add">Finish Creating Answers</button>
     </form>
     <div id="history"></div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -27,12 +28,8 @@
         $(this).find('button').remove();
       });
 
-      $('form').on('submit', function(event) {
-        event.preventDefault();
-        $(this).find('button').remove();
-      });
 
-      
+
     </script>
   </body>
 </html>
