@@ -10,7 +10,7 @@
     <header>
       <h1>Create your poll!</h1>
     </header>
-    <form id = "pollButtons">
+    <form id = "pollButton">
       <input type="text" name="left">
       <button type="add" name="poll">Poll</button>
     </form>
@@ -23,12 +23,15 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
 
-      $('pollButtons').on('submit', function(event) {
+      $('form').on('submit', function(event) {
         event.preventDefault();
         $(this).find('poll').remove();
       });
 
-
+      $('form').on('submit', function(event) {
+        event.preventDefault();
+        $(this).find('final').remove();
+      });
 
     </script>
   </body>
