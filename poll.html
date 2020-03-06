@@ -9,12 +9,12 @@
       <h1>Create your poll!</h1>
     </header>
     <h3>Question</h3>
-    <form id = "pollButtons">
+    <form class= "pollButtons">
       <input type="text" name="left">
       <button type="add" name="poll">Poll</button>
     </form>
     <h3>Choices<h3>
-    <form id="answerButtons">
+    <form class="answerButtons">
       <input type="text" name="left">
       <button type="add" name="answers">Add Choice</button>
     </form>
@@ -29,7 +29,7 @@
 
       // Number of times the form has been submitted
       let counter = 0;
-
+/*
       // Respond to submit events
       $('form').on('submit', function(event) {
         const form = $(this); // JQuery object representing the form
@@ -64,7 +64,21 @@
         const form = $(this);
         event.preventDefault();
         list.remove()
-      })
+      })*/
+
+      // Generate a button for each desired answer that is submitted
+      $('.answerButtons').on('submit', function(event) {
+        const form = $(this);   // JQuery object representin the form
+        event.preventDefault();
+      // Create a new list
+      const list = $('<ul></ul>');
+      const inputs = form.find('input');
+
+      const li = $(`<div> <button> ${inputs.val()} </button> </div>`);
+      inputs.val('');    // Empty out the box
+
+      $('#history').append(li);
+    });
 
 
     </script>
