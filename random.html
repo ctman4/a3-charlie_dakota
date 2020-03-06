@@ -39,9 +39,9 @@
     <h3>Choices<h3>
     <form class="answerButtons">
       <input type="text" name="left">
-      <button type="add" name="answers">Add Choice</button>
+      <button type="add" id="answers">Add Choice</button>
     </form>
-    <form>
+    <form class="createButton">
       <button type="add" name="final">Create Poll</button>
     </form>
 
@@ -49,40 +49,47 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
 
-    // Number of times the form has been submitted
-    let counter = 0;
+      // Number of times the form has been submitted
+      let counter = 0;
 
-    // Respond to submit events
-    $('.answerButtons').on('submit', function(event) {
-      const form = $(this); // JQuery object representing the form
-      event.preventDefault(); // Don't really submit the form
+      // Respond to submit events
+      $('.answerButtons').on('submit', function(event) {
 
-      // Create a new list
-      const list = $('<ul></ul>');
-      counter++;
-      // Translate each input value into a list item
-      const inputs = form.find('input'); // JQuery object represent all inputs
-      for (let input of inputs) {
-        input = $(input); // Turn into a JQuery object
-        const li = $(`<div><p>${counter}</p><button id=${counter}>${input.val()}</button></div>`); // New list item
-        list.append(li);
-        input.val(''); // Empty out the box
-      }
+            const form = $(this); // JQuery object representing the form
+            event.preventDefault(); // Don't really submit the form
 
-      //creates submit #
+            // Create a new list
+            const list = $('<ul></ul>');
+            counter++;
+            // Translate each input value into a list item
+            const inputs = form.find('input'); // JQuery object represent all inputs
+            for (let input of inputs) {
+              input = $(input); // Turn into a JQuery object
+              const li = $(`<div><p>${counter}</p><button id=${counter}>${input.val()}</button></div>`); // New list item
+              list.append(li);
+              input.val(''); // Empty out the box
+            }
 
-      //const p = $(`<button>${counter} </button>`);
+            //creates submit #
 
-      //Add to the page
-      //$('#history1').append(p);
-      $('#history1').append(list);
-    });
+            //const p = $(`<button>${counter} </button>`);
 
-    $('#history1').on('click', 'button', function(event) {
-      const button = $(this);
-      const id = button.attr('id');
-      console.log('Clicked button', id);
-    });
+            //Add to the page
+            //$('#history1').append(p);
+            $('#history1').append(list);
+      });
+
+      $('#history1').on('click', 'button', function(event) {
+        const button = $(this);
+        const id = button.attr('id');
+        console.log('Clicked button', id);
+      });
+
+      $('.createButton').on('submit', function(event) {
+        const form = $(this);   // JQuery object representin the form
+        event.preventDefault();
+        $(this).remove();
+      });
 
     </script>
   </body>
