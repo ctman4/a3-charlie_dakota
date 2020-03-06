@@ -11,7 +11,7 @@
     <h3>Question</h3>
     <form id = "pollButtons">
       <input type="text" name="left">
-      <button type="add" name='poll'>Poll</button>
+      <button type="add" name="poll">Poll</button>
     </form>
     <h3>Choices<h3>
     <form id="answerButtons">
@@ -42,18 +42,18 @@
         const inputs = form.find('input'); // JQuery object represent all inputs
         for (let input of inputs) {
           input = $(input); // Turn into a JQuery object
-          const li = $(`<p><div>
+          const li = $(`<li><div>
 
-          <button#${counter}  ${input.val()}
+            ${input.val()}
 
-            </div></p>`); // New list item
+            </div></li>`); // New list item
           list.append(li);
           input.val(''); // Empty out the box
         }
         //creates submit #
         counter++;
         const p = $(`<p>Submit #${counter}</p>`);
-        const q = $(`<p>`)
+
 
         //Add to the page
         $('#history').append(p);
@@ -66,15 +66,7 @@
         list.remove()
       })
 
-        counter++;
-        const p = $(`<p>Question #${counter}</p>`);
-
-        // Add to the page
-        $('#history').append(p);
-        $('#history').append(list);
-      });
 
     </script>
-
   </body>
 </html>
