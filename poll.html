@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Poll Copy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
   <body>
     <header>
@@ -13,6 +14,31 @@
       <input type="text" name="left">
       <button type="add" name="poll">Poll</button>
     </form>
+
+
+    <!-- Poll button information -->
+    <div id="history"></div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+
+        $('.pollButtons').on('submit', function(event) {
+          const form = $(this);   // JQuery object representin the form
+          event.preventDefault();
+        // Create a new list
+        const list = $('<ul></ul>');
+        const inputs = form.find('input');
+
+        const li = $(`<div><p>${inputs.val()}</p></div>`);
+        $(this).remove();    // Empty out the box
+
+        $('#history').append(li);
+        });
+
+    </script>
+
+    <!-- Choices information -->
     <h3>Choices<h3>
     <form class="answerButtons">
       <input type="text" name="left">
@@ -22,65 +48,76 @@
       <button type="add" name="final">Create Poll</button>
     </form>
 
-
-    <div id="history"></div>
+    <div id="history1"></div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
 
-      // Number of times the form has been submitted
-      let counter = 0;
-/*
-      // Respond to submit events
-      $('form').on('submit', function(event) {
-        const form = $(this); // JQuery object representing the form
-        event.preventDefault(); // Don't really submit the form
+    // Number of times the form has been submitted
+    let counter = 0;
 
-        // Create a new list
-        const list = $('<ul></ul>');
+    // Respond to submit events
+    $('.answerButtons').on('submit', function(event) {
+      const form = $(this); // JQuery object representing the form
+      event.preventDefault(); // Don't really submit the form
 
-        // Translate each input value into a list item
-        const inputs = form.find('input'); // JQuery object represent all inputs
-        for (let input of inputs) {
-          input = $(input); // Turn into a JQuery object
-          const li = $(`<li><div>
-
-            ${input.val()}
-
-            </div></li>`); // New list item
-          list.append(li);
-          input.val(''); // Empty out the box
-        }
-        //creates submit #
-        counter++;
-        const p = $(`<p> #${counter}</p>`);
-
-
-        //Add to the page
-        $('#history').append(p);
-        $('#history').append(list);
-      });
-
-      $('form').on('delete', function(event){
-        const form = $(this);
-        event.preventDefault();
-        list.remove()
-      })*/
-
-      // Generate a button for each desired answer that is submitted
-      $('.answerButtons').on('submit', function(event) {
-        const form = $(this);   // JQuery object representin the form
-        event.preventDefault();
       // Create a new list
       const list = $('<ul></ul>');
-      const inputs = form.find('input');
+      counter++;
+      // Translate each input value into a list item
+      const inputs = form.find('input'); // JQuery object represent all inputs
+      for (let input of inputs) {
+        input = $(input); // Turn into a JQuery object
+        const li = $(`<div><p>${counter}</p><button id=${counter}>${input.val()}</button></div>`); // New list item
+        list.append(li);
+        input.val(''); // Empty out the box
+      }
 
-      const li = $(`<div> <button> ${inputs.val()} </button> </div>`);
-      inputs.val('');    // Empty out the box
+      //creates submit #
 
-      $('#history').append(li);
+      //const p = $(`<button>${counter} </button>`);
+
+      //Add to the page
+      //$('#history1').append(p);
+      $('#history1').append(list);
     });
 
+    $('#history1').on('click', 'button', function(event) {
+      const button = $(this);
+      const id = button.attr('id');
+      console.log('Clicked button', id);
+    });
 
     </script>
+    <div class="container pt-5 pb-5">
+      <h3 class="pb-3">Tallies</h3>
+      <table class="table table-bordered mt-3">
+        <thead style="font-size:20px">
+          <tr>
+            <th scope="col">Question</th>
+            <th scope="col">Selections</th>
+          </tr>
+        </thead>
+        <tbody style="font-size:16px">
+          <script>
+          </script>
+          <tr>
+            <th scope="row">1</th>
+            <td>1-counter</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>2-counter</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>3-counter</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>4-counter</td>
+          </tr>
+
+        </tbody>
+      </table>
   </body>
 </html>
