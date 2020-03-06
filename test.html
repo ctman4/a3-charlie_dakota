@@ -27,12 +27,25 @@
         event.preventDefault();
         $(this).find('button').remove();
       });
-
+/*
       $('.Answers').on('submit', function(event) {
         event.preventDefault();
         if($(this).find('final')){
           $(this).find('button').remove();
-        }
+        }*/
+
+        // Generate a button for each desired answer that is submitted
+        $('.Answers').on('submit', function(event) {
+          const form = $(this);   // JQuery object representin the form
+          event.preventDefault();
+        // Create a new list
+        const list = $('<ul></ul>');
+        const inputs = form.find('input');
+
+        const li = $(`<div> <button> ${inputs.val()} </button> </div>`);
+        inputs.val('');    // Empty out the box
+
+        $('#history').append(li);
       });
 
     </script>
