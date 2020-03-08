@@ -56,11 +56,15 @@
     let counter = 0;
 
     function productsAdd(count) {
+
       $("#Tallies tbody").append(
         "<tr>" +
-          `<td>${count}</td>` +
-        "</tr>"
-      );
+
+        `<td>${count}</td>` +
+
+        `<td>0</td>` +
+
+        "</tr>"  );
     }
 
     // Respond to submit events
