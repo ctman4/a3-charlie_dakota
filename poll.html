@@ -2,13 +2,8 @@
 <!DOCTYPE html>
   <head>
     <meta charset="utf-8">
-<<<<<<< HEAD
-    <title>Poll Copy</title>
-
-=======
     <title>Poll</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
->>>>>>> a87d3b52f0f285388bfc819f8d0ba4159eb6b5bb
   </head>
   <body>
     <header>
@@ -22,7 +17,9 @@
 
 
     <!-- Poll button information -->
-    <div id="history"></div>
+
+
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
 
@@ -45,24 +42,23 @@
     <h3>Choices<h3>
     <form class="answerButtons">
       <input type="text" name="left">
-      <button type="add" id="answers">Add Choice</button>
+      <button type="add" name="answers">Add Choice</button>
     </form>
-    <form class="createButton">
+    <form>
       <button type="add" name="final">Create Poll</button>
     </form>
-    <ul id="clicks"></ul>
+
     <div id="history1"></div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
 
     // Number of times the form has been submitted
     let counter = 0;
-    let c = 0;
-    var ans = [];
 
     function productsAdd(count) {
+
       $("#Tallies tbody").append(
-        `<tr id=${count}>` +
+        "<tr>" +
 
         `<td>${count}</td>` +
 
@@ -71,9 +67,7 @@
         "</tr>"  );
     }
 
-    function countClicks(count, c) {
-
-  }
+  
 
     // Respond to submit events
     $('.answerButtons').on('submit', function(event) {
@@ -83,39 +77,28 @@
       // Create a new list
       const list = $('<ul></ul>');
       counter++;
-
       // Translate each input value into a list item
       const inputs = form.find('input'); // JQuery object represent all inputs
       for (let input of inputs) {
         input = $(input); // Turn into a JQuery object
-        const li = $(`<div id=answers><button id=${input.val()}>${input.val()}</button></div>`); // New list item
+        const li = $(`<div><p>${counter}</p><button id=${counter}>${input.val()}</button></div>`); // New list item
         list.append(li);
-        ans.push(input.val());
         productsAdd(input.val());
         input.val(''); // Empty out the box
       }
 
+      //creates submit #
+
+      //const p = $(`<button>${counter} </button>`);
+
+      //Add to the page
+      //$('#history1').append(p);
       $('#history1').append(list);
     });
 
-    // keeps track of buttons click in console
-    $('#history1').on('click','button', function(event) {
+    $('#history1').on('click', 'button', function(event) {
       const button = $(this);
       const id = button.attr('id');
-      //countClicks(id, c);
-      var table = $('#Tallies');
-      // Reading through values that were checked
-       for (let val of ans){
-         // Reading through each table row
-         table.find('tr').each(function (i, el) {
-           var $ths = $(this).find('td'),
-             answer = $ths.eq(0).text(),
-             value = $ths.eq(1).text()
-             // Checks to see if this value is equal to checked value and increments when true
-             if (String(val) === String(answer)){
-               $(`#Tallies tr:contains(${val}) td`).eq(1).html(Number(value) + 1);}
-           });
-         }
       console.log('Clicked button', id);
     });
 
@@ -126,12 +109,8 @@
       $(this).remove();
     });
 
-
-
     </script>
-
     <div class="container pt-5 pb-5">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <h3 class="pb-3">Tallies</h3>
       <table class="table table-bordered mt-3" id = "Tallies">
         <thead style="font-size:20px">
@@ -146,6 +125,5 @@
         </tbody>
       </table>
     </div>
-
   </body>
 </html>
