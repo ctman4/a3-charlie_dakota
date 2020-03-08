@@ -60,22 +60,19 @@
 
             // Create a new list
             const list = $('<ul></ul>');
+            const lst = $('<ul></ul>');
             counter++;
             // Translate each input value into a list item
             const inputs = form.find('input'); // JQuery object represent all inputs
             for (let input of inputs) {
               input = $(input); // Turn into a JQuery object
-              const li = $(`<div><p>${counter}</p><button id=${counter}>${input.val()}</button></div>`); // New list item
+              const li = $(`<div><button id=${counter}>${input.val()}</button></div>`); // New list item
+
               list.append(li);
               input.val(''); // Empty out the box
             }
 
-            //creates submit #
 
-            //const p = $(`<button>${counter} </button>`);
-
-            //Add to the page
-            //$('#history1').append(p);
             $('#history1').append(list);
       });
 
@@ -85,9 +82,11 @@
         console.log('Clicked button', id);
       });
 
+
       $('.createButton').on('submit', function(event) {
         const form = $(this);   // JQuery object representin the form
         event.preventDefault();
+        $('.answerButtons').remove();
         $(this).remove();
       });
 
