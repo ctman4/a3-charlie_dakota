@@ -95,7 +95,9 @@
       const button = $(this);
       const id = button.attr('id');
       // Reading through each table row
+      
       $('#Tallies').find('tr').each(function () {
+
         const td = $(this).find('td'),
            input = td.eq(0).text(),
            tally = td.eq(1).text()
