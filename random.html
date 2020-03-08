@@ -45,21 +45,30 @@
     <form class="createButton">
       <button type="add" name="final">Create Poll</button>
     </form>
-
+    <ul id="clicks"></ul>
     <div id="history1"></div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
 
     // Number of times the form has been submitted
     let counter = 0;
+    let c = 0;
+    var ans = [];
 
     function productsAdd(count) {
       $("#Tallies tbody").append(
-        "<tr>" +
-          `<td>${count}</td>` +
-        "</tr>"
-      );
+        `<tr id=${count}>` +
+
+        `<td>${count}</td>` +
+
+        `<td>0</td>` +
+
+        "</tr>"  );
     }
+
+    function countClicks(count, c) {
+
+  }
 
     // Respond to submit events
     $('.answerButtons').on('submit', function(event) {
@@ -69,28 +78,39 @@
       // Create a new list
       const list = $('<ul></ul>');
       counter++;
+
       // Translate each input value into a list item
       const inputs = form.find('input'); // JQuery object represent all inputs
       for (let input of inputs) {
         input = $(input); // Turn into a JQuery object
-        const li = $(`<div><button id=${counter}>${input.val()}</button></div>`); // New list item
+        const li = $(`<div id=answers><button id=${input.val()}>${input.val()}</button></div>`); // New list item
         list.append(li);
+        ans.push(input.val());
         productsAdd(input.val());
         input.val(''); // Empty out the box
       }
 
-      //creates submit #
-
-      //const p = $(`<button>${counter} </button>`);
-
-      //Add to the page
-      //$('#history1').append(p);
       $('#history1').append(list);
     });
 
-    $('#history1').on('click', 'button', function(event) {
+    // keeps track of buttons click in console
+    $('#history1').on('click','button', function(event) {
       const button = $(this);
       const id = button.attr('id');
+      //countClicks(id, c);
+      var table = $('#Tallies');
+      // Reading through values that were checked
+       for (let val of ans){
+         // Reading through each table row
+         table.find('tr').each(function (i, el) {
+           var $ths = $(this).find('td'),
+             answer = $ths.eq(0).text(),
+             value = $ths.eq(1).text()
+             // Checks to see if this value is equal to checked value and increments when true
+             if (String(val) === String(answer)){
+               $(`#Tallies tr:contains(${val}) td`).eq(1).html(Number(value) + 1);}
+           });
+         }
       console.log('Clicked button', id);
     });
 
@@ -100,6 +120,8 @@
       $('.answerButtons').remove();
       $(this).remove();
     });
+
+
 
     </script>
 
