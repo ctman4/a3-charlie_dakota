@@ -66,9 +66,6 @@
         "</tr>"  );
     }
 
-    function countClicks(count, c) {
-
-  }
 
     // Respond to submit events
     $('.answerButtons').on('submit', function(event) {
@@ -97,20 +94,14 @@
     $('#history1').on('click','button', function(event) {
       const button = $(this);
       const id = button.attr('id');
-      //countClicks(id, c);
-      var table = $('#Tallies');
-      // Reading through values that were checked
-       for (let val of ans){
-         // Reading through each table row
-         table.find('tr').each(function (i, el) {
-           var $ths = $(this).find('td'),
-             answer = $ths.eq(0).text(),
-             value = $ths.eq(1).text()
-             // Checks to see if this value is equal to checked value and increments when true
-             if (String(val) === String(answer)){
-               $(`#Tallies tr:contains(${val}) td`).eq(1).html(Number(value) + 1);}
-           });
-         }
+      // Reading through each table row
+      $('#Tallies').find('tr').each(function () {
+        const td = $(this).find('td'),
+           input = td.eq(0).text(),
+           tally = td.eq(1).text()
+           if (id === String(input)){
+             $(`#Tallies tr:contains(${id}) td`).eq(1).html(Number(tally) + 1);}
+         });
       console.log('Clicked button', id);
     });
 
