@@ -9,15 +9,17 @@
     <header>
       <h1>Create your poll!</h1>
     </header>
+    <hr>
     <!-- Create a textbox and button for user to input a question-->
-    <h3>Question</h3>
+    <h3 class= m-5>Question</h3>
     <form class= "pollButtons">
-      <input type="text" name="left">
-      <button type="add" name="poll">Poll</button>
+      <input type="text" name="left" class="form-control m-5">
+      <button class="btn btn-outline-primary btn-sm ml-5" type="add" name="poll">Submit Question</button>
     </form>
 
     <!-- Poll button information -->
-    <div id="history"></div>
+    <div id="history" class="ml-5"></div>
+    <hr>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
 
@@ -37,15 +39,16 @@
     </script>
 
     <!-- Answers information -->
-    <h3 class="pt-3 pb-3">Answers<h3>
+    <h3 class="pt-3 m-5">Answers<h3>
     <form class="answerButtons">
-      <input type="text" name="left">
-      <button type="add" id="answers">Add Choice</button>
+      <input type="text" name="left" class="form-control m-5">
+      <button class="btn btn-outline-primary btn-sm ml-5" type="add" id="answers">Add Choice</button>
     </form>
-    <form class="createButton pt-3 pb -3">
-      <button type="add" name="final">Start the Poll!</button>
+    <form class="createButton pt-3">
+      <button class="btn btn-outline-success ml-5" type="add" name="final">Done Submitting Answers, Start the Poll!</button>
     </form>
     <div id="history1"></div>
+    <hr>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
 
@@ -77,7 +80,7 @@
         const inputs = form.find('input');
         for (let input of inputs) {
           input = $(input);
-          const li = $(`<div id=answers><button id=${counter}>${counter}: ${input.val()}</button></div>`); // New list item
+          const li = $(`<div id=answers><button id=${counter} class="btn btn-outline-primary btn-sm">${counter}: ${input.val()}</button></div>`); // New list item
           list.append(li);
           productsAdd(input.val(),counter); // Generate the new row for the table
           input.val('');
@@ -112,9 +115,9 @@
 
     <!-- Bootstrap documentation -->
     <div class="container pt-3 pb-3">
-      <h3 class="pb-3">Tallies</h3>
-      <table class="table table-bordered mt-3" id = "Tallies">
-        <thead style="font-size:20px">
+      <h3 class="pb-3 m-5">Tallies</h3>
+      <table class="table mt-3" id = "Tallies">
+        <thead class="thead-dark" style="font-size:20px">
           <tr>
             <th scope="col">Answer</th>
             <th scope="col">Count</th>
@@ -129,7 +132,7 @@
 
     <!-- Clear inputs to start a new poll -->
     <form class= "newPoll" >
-      <button type="submit" name="poll" >Start New Poll</button>
+      <button class="btn btn-outline-primary m-5" type="submit" name="poll" >Start New Poll</button>
     </form>
   </body>
 </html>
