@@ -5,7 +5,7 @@
     <title>Poll Copy</title>
 
   </head>
-  <body>
+  <body class="m-3 p-3">
     <header>
       <h1>Create your poll!</h1>
     </header>
@@ -37,13 +37,13 @@
     </script>
 
     <!-- Choices information -->
-    <h3>Choices<h3>
+    <h3 class="pt-3">Answers<h3>
     <form class="answerButtons">
       <input type="text" name="left">
       <button type="add" id="answers">Add Choice</button>
     </form>
-    <form class="createButton">
-      <button type="add" name="final">Create Poll</button>
+    <form class="createButton pt-3">
+      <button type="add" name="final">Start the Poll!</button>
     </form>
     <ul id="clicks"></ul>
     <div id="history1"></div>
@@ -55,7 +55,7 @@
     let c = 0;
     var ans = [];
 
-    function productsAdd(input, count) {
+    function productsAdd(input,count) {
       $("#Tallies tbody").append(
         `<tr id=${count}>` +
 
@@ -95,15 +95,16 @@
       const button = $(this);
       const id = button.attr('id');
       // Reading through each table row
+
       $('#Tallies').find('tr').each(function () {
-        const td = $(this).find('td'),
-           input = td.eq(0).text(),
-           tally = td.eq(1).text()
-           if (id === String(input)){
-             $(`#Tallies tr:contains(${id}) td`).eq(1).html(Number(tally) + 1);}
-         });
-      console.log('Clicked button', id);
+          const td = $(this).find('td'),
+             input = td.eq(0).text(),
+             tally = td.eq(1).text()
+             if (ans[id-1] === input){
+               $(`#Tallies`).find(`tr:eq(${id})`).find(`td:eq(1)`).html(Number(tally) + 1);}
+           });
     });
+
 
     $('.createButton').on('submit', function(event) {
       const form = $(this);   // JQuery object representin the form
@@ -116,14 +117,14 @@
 
     </script>
 
-    <div class="container pt-5 pb-5">
+    <div class="container pt-3 pb-3">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <h3 class="pb-3">Tallies</h3>
       <table class="table table-bordered mt-3" id = "Tallies">
         <thead style="font-size:20px">
           <tr>
-            <th scope="col">Question</th>
-            <th scope="col">Selections</th>
+            <th scope="col">Answer</th>
+            <th scope="col">Count</th>
           </tr>
         </thead>
         <tbody style="font-size:16px">
@@ -133,5 +134,8 @@
       </table>
     </div>
 
+    <form class= "newPoll" >
+      <button type="submit" name="poll" >Start New Poll</button>
+    </form>
   </body>
 </html>
